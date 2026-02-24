@@ -1,0 +1,59 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const allPosts = await Astro.glob("./posts/*.md");
+const postsByYear = allPosts.reduce(
+    (acc, post) => {
+        const date = post.frontmatter.date
+            ? new Date(post.frontmatter.date)
+            : new Date();
+        const year = date.getFullYear().toString();
+
+        if (!acc[year]) {
+            acc[year] = [];
+        }
+        acc[year].push(post);
+        return acc;
+    },
+    {} as Record<string, any[]>,
+);
+
+const years = Object.keys(postsByYear).sort((a, b) => b.localeCompare(a));
+---
+
+<MainLayout>
+    {
+        years.map((year) => (
+            <section class="year-section">
+                <h2 class="year-title">{year}</h2>
+                <ul class="post-list">
+                    {postsByYear[year].map((post) => (
+                        <li>
+                            <a href={post.url} class="post-link">
+                                {post.frontmatter.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))
+    }
+</MainLayout>
+
+<style>
+    .post-list {
+        list-style: disc;
+        padding-left: 2rem;
+    }
+    .post-list li {
+        margin-bottom: 0.5rem;
+    }
+    .post-link {
+        font-size: 1.1rem;
+        color: #0066cc;
+        text-decoration: underline;
+    }
+    .post-link:hover {
+        color: #004499;
+    }
+</style>
