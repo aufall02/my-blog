@@ -1,17 +1,69 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+    <section>
+        <p>
+            Hello, I’m Aufal, an independent software engineer from Indonesia.
+            In my spare time, I build and explore Internet technologies and
+            enjoy learning more about Linux and system fundamentals.
+        </p>
+
+        <p>I occasionally <a href="/posts">write about these things</a>.</p>
+
+        <p>You can find me on:</p>
+        <ul>
+            <li>
+                <a href="https://github.com/aufall02" target="_blank">GitHub</a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/aufall02/" target="_blank"
+                    >Facebook</a
+                >
+            </li>
+        </ul>
+
+        <p>or you can <a href="mailto:aufaluzumaki@gmail.com">email</a> me.</p>
+
+        <h3 id="projects">Projects</h3>
+        <p>Current and past projects that I created:</p>
+
+        <ul>
+            <!-- <li>
+                <a href="https://astexplorer.net">astexplorer.net</a><br />
+                An online editor to explore abstract syntax trees of various languages.
+            </li>
+            <li>
+                <a href="https://github.com/facebook/jscodeshift">jscodeshift</a
+                ><br />
+                An AST based codemod tool for JavaScript.
+            </li> -->
+        </ul>
+
+        <h3 id="favorite-quotes">Favorite quotes</h3>
+        <blockquote>
+            “I may not have gone where I intended to go, but I think I have
+            ended up where I needed to be.” (Douglas Adams)
+        </blockquote>
+        <blockquote>
+            “Perfection is achieved, not when there is nothing more to add, but
+            when there is nothing left to take away.” (Antoine de Saint Exupery)
+        </blockquote>
+        <blockquote>
+            “If you’re not making mistakes, you’re not doing anything.” (John
+            Wooden)
+        </blockquote>
+    </section>
+</MainLayout>
+
+<style>
+    blockquote {
+        border-left: 4px solid #e5e7eb; /* Warna garis vertikal abu-abu terang */
+        padding-left: 1rem; /* Jarak teks dari garis */
+        margin-left: 0;
+        margin-bottom: 1.5rem;
+        font-style: italic; /* Bikin teks jadi miring */
+        color: #4b5563; /* Warna teks agak abu-abu gelap */
+    }
+</style>

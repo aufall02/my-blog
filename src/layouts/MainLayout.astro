@@ -1,0 +1,288 @@
+---
+const allPosts = await Astro.glob("../pages/posts/*.md");
+const sortedPosts = allPosts.sort(
+    (a, b) =>
+        new Date(b.frontmatter.date).getTime() -
+        new Date(a.frontmatter.date).getTime(),
+);
+
+const currentPath = Astro.url.pathname;
+const currentIndex = sortedPosts.findIndex((post) => {
+    const postUrl = post.url?.endsWith("/") ? post.url : post.url + "/";
+    const normalizedPath = currentPath.endsWith("/")
+        ? currentPath
+        : currentPath + "/";
+    return postUrl === normalizedPath;
+});
+
+const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+const prevPost =
+    currentIndex < sortedPosts.length - 1
+        ? sortedPosts[currentIndex + 1]
+        : null;
+
+const { frontmatter } = Astro.props;
+const isHome = Astro.url.pathname === "/";
+const isBlogs = Astro.url.pathname === "/posts";
+
+const formatDate = (dateString: string) => {
+    if (!dateString) return "";
+    const d = new Date(dateString);
+    return d.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    });
+};
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{frontmatter?.title || "Aufal Marom"}</title>
+        <style is:global>
+            :root {
+                --system-fonts:
+                    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                    "Helvetica Neue", sans-serif;
+                --code-fonts:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    monospace;
+                --text-color: #222;
+                --link-color: #0000ee;
+                --nav-link-color: #551a8b;
+                --bg-color: #fff;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: var(--system-fonts);
+                color: var(--text-color);
+                background-color: var(--bg-color);
+                max-width: 650px;
+                margin: 0 auto;
+            }
+
+            h1,
+            h2,
+            h3 {
+                line-height: 1.2;
+                color: #000;
+            }
+
+            a {
+                color: var(--link-color);
+                text-decoration: underline;
+            }
+
+            a:hover {
+                color: #ff4500;
+            }
+
+            code {
+                font-family: var(--code-fonts);
+                background: #f4f4f4;
+                padding: 0.2em 0.4em;
+                border-radius: 4px;
+                font-size: 0.9em;
+            }
+
+            pre {
+                background: #f8f8f8;
+                padding: 15px;
+                border-radius: 8px;
+                overflow-x: auto;
+                border: 1px solid #eee;
+            }
+
+            pre code {
+                background: none;
+                padding: 0;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            .header-content {
+                position: relative;
+                /*margin-top: 1rem;*/
+                display: flex;
+                flex-direction: column;
+            }
+
+            .header-date {
+                align-self: flex-end;
+                font-size: 1.1rem;
+                color: #333;
+                font-weight: 500;
+                margin-bottom: -10px;
+            }
+
+            .post-title {
+                /*font-size: 2.8rem;*/
+                /*font-weight: ;*/
+                line-height: 1.1;
+                /*margin-top: 10px;*/
+                letter-spacing: -0.03em;
+                color: #000;
+                text-decoration: none;
+            }
+
+            .nav-back {
+                display: block;
+                margin-bottom: 20px;
+                color: #666;
+                text-decoration: none;
+                font-size: 0.9rem;
+            }
+
+            main {
+                margin-top: 2rem;
+            }
+
+            .post-footer {
+                margin-top: 100px;
+                padding-top: 20px;
+                font-size: 1.1rem;
+                font-style: italic;
+                color: #333;
+            }
+
+            .footer-nav {
+                margin-top: 40px;
+                border-top: 1px solid #eee;
+                padding-top: 20px;
+                font-style: normal;
+            }
+
+            .nav-links {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
+            .prev,
+            .next {
+                max-width: 45%;
+            }
+
+            .next {
+                text-align: right;
+                margin-left: auto;
+            }
+
+            .footer-nav a {
+                color: var(--nav-link-color);
+                text-decoration: underline;
+                font-size: 1rem;
+            }
+
+            .fallback-link {
+                display: block;
+                margin-top: 10px;
+            }
+
+            /* --- Top Navigation Styles --- */
+            .top-nav {
+                display: flex;
+                align-items: baseline; /* Biar teksnya sejajar di garis bawah yang sama */
+                gap: 1.5rem; /* Jarak antara nama dan menu */
+            }
+
+            .site-name {
+                font-size: 1.25rem;
+                font-weight: 800; /* Cetak tebal */
+                color: #000;
+                text-decoration: none; /* Hilangkan garis bawah di nama */
+            }
+
+            .site-name:hover {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .main-menu {
+                display: flex;
+                gap: 1rem; /* Jarak antar menu (About & Blog) */
+            }
+
+            .main-menu a {
+                color: var(--link-color); /* Biru klasik */
+                text-decoration: underline;
+                font-size: 1.05rem;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="post-header">
+            <div class="top-nav">
+                <h2>Aufal marom</h2>
+                <nav class="main-menu">
+                    <a href="/">About</a>
+                    <a href="/posts">Blog</a>
+                </nav>
+            </div>
+            <div class="header-content">
+                {
+                    frontmatter?.date && (
+                        <span class="header-date">
+                            {formatDate(frontmatter.date)}
+                        </span>
+                    )
+                }
+                {frontmatter?.title && <h2>{frontmatter.title}</h2>}
+            </div>
+        </header>
+
+        <main>
+            <slot />
+        </main>
+
+        {
+            !isHome && !isBlogs && (
+                <footer class="post-footer">
+                    <p>
+                        Please{" "}
+                        <a href="mailto:aufaluzumaki@gmail.com">contact me</a>{" "}
+                        if you have questions or found issues in this post.
+                    </p>
+
+                    <div class="footer-nav">
+                        <div class="nav-links">
+                            {prevPost && (
+                                <div class="prev">
+                                    <a href={prevPost.url}>
+                                        ← {prevPost.frontmatter.title}
+                                    </a>
+                                </div>
+                            )}
+                            {nextPost && (
+                                <div class="next">
+                                    <a href={nextPost.url}>
+                                        {nextPost.frontmatter.title} →
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Link fallback jika artikel cuma ada 1 */}
+                        {!prevPost && !nextPost && (
+                            <a href="/posts" class="fallback-link">
+                                ← Kembali ke Kumpulan Tulisan
+                            </a>
+                        )}
+                    </div>
+                </footer>
+            )
+        }
+    </body>
+</html>
