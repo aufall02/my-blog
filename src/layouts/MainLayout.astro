@@ -3,7 +3,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
 const sortedPosts = allPosts.sort(
     (a, b) =>
         new Date(b.frontmatter.date).getTime() -
-        new Date(a.frontmatter.date).getTime(),
+        new Date(a.frontmatter.date).getTime()
 );
 
 const currentPath = Astro.url.pathname;
@@ -36,7 +36,7 @@ const formatDate = (dateString: string) => {
 };
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
     <head>
         <meta charset="UTF-8" />
@@ -44,13 +44,11 @@ const formatDate = (dateString: string) => {
         <title>{frontmatter?.title || "Aufal Marom"}</title>
         <style is:global>
             :root {
-                --system-fonts:
-                    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                --system-fonts: system-ui, -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
                     "Helvetica Neue", sans-serif;
-                --code-fonts:
-                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-                    monospace;
+                --code-fonts: ui-monospace, SFMono-Regular, Menlo, Monaco,
+                    Consolas, monospace;
                 --text-color: #222;
                 --link-color: #0000ee;
                 --nav-link-color: #551a8b;
@@ -219,6 +217,14 @@ const formatDate = (dateString: string) => {
                 color: var(--link-color); /* Biru klasik */
                 text-decoration: underline;
                 font-size: 1.05rem;
+            }
+
+            figcaption {
+                text-align: center;
+                font-size: 0.9rem;
+                color: #666;
+                margin-top: 8px;
+                font-style: italic;
             }
         </style>
     </head>
