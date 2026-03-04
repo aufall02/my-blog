@@ -1,6 +1,6 @@
-# Aufal's Personal Website & Blog
+# [Aufal's Personal Website & Blog](https://blog.ngecode.id/)
 
-Repositori ini berisi *source code* untuk website personal dan blog saya, dibangun menggunakan pendekatan minimalis dan performa tinggi (Zero-JS). Desainnya terinspirasi dari website [Felix Kling](https://felix-kling.de/).
+Repositori ini berisi *source code* untuk [website personal dan blog saya](https://blog.ngecode.id/), dibangun menggunakan pendekatan minimalis dan performa tinggi (Zero-JS). Desainnya terinspirasi dari website [Felix Kling](https://felix-kling.de/).
 
 Di website ini, saya membagikan hasil eksplorasi teknis, eksperimen pribadi, serta berbagai proyek dan temuan menarik yang saya kerjakan.
 
