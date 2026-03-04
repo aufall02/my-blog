@@ -89,12 +89,14 @@ git push origin main
 
 Masuk ke dashboard Cloudflare, kemudian:
 
-1. Buka menu **Workers & Pages**
-2. Pilih **Create Application**
-3. Pilih **Pages**
+1. Buka menu Compute->Workers & Pages
+2. Pilih Create Application
+3. Pilih Continue with Github | atau bisa pilih beberapa opsi lainnya
 4. Hubungkan repository GitHub yang berisi project SvelteKit
 
 Cloudflare akan secara otomatis mendeteksi framework dan menjalankan proses build.
+![tampilan dashboard dari worker](./assets/worker-pages.png)
+![tampilan connect to github](./assets/connect-github-account.png)
 
 ---
 
