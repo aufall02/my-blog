@@ -22,8 +22,9 @@ const prevPost =
         : null;
 
 const { frontmatter } = Astro.props;
-const isHome = Astro.url.pathname === "/";
-const isBlogs = Astro.url.pathname === "/posts";
+const normalizedPathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHome = normalizedPathname === "/";
+const isBlogs = normalizedPathname === "/posts";
 
 const formatDate = (dateString: string) => {
     if (!dateString) return "";
