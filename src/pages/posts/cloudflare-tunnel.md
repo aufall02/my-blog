@@ -3,6 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: "Cloudflare Tunnel – Practical Technique"
 date: "2026-03-06" 
 description: "Pernah kebingungan saat klien minta lihat progres web yang masih di localhost? Ini panduan praktis Cloudflare Tunnel untuk mengekspos lokal server ke publik dengan aman."
+keywords: ["cloudflare tunnel", "localhost public", "reverse proxy", "web server lokal", "networking", "deploy lokal"]
 ---
 
 Pernah nggak sih kamu lagi asyik *coding* di laptop, fitur udah jalan mulus di `localhost`, terus tiba-tiba klien minta lihat progresnya saat itu juga? Dulu aku sering banget ketar-ketir. Bingung gimana caranya presentasiin web yang masih murni jalan di komputer lokalku tanpa harus ribet *deploy* dulu ke *server*. Kalau disuruh *deploy* kan lumayan makan waktu tuh, apalagi kalau lagi *rush*.

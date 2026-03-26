@@ -3,6 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: "Deploy SvelteKit to Cloudflare Pages"
 date: "2026-03-04" 
 description: "Panduan langkah demi langkah untuk men-deploy aplikasi SvelteKit ke Cloudflare Pages, mulai dari konfigurasi project, integrasi dengan GitHub, hingga memastikan build berjalan optimal di edge network Cloudflare."
+keywords: ["sveltekit", "cloudflare pages", "deploy sveltekit", "frontend hosting", "github page alternative", "edge render"]
 ---
 [Cloudflare Pages](https://pages.cloudflare.com/) adalah platform hosting modern untuk website dan aplikasi frontend yang dibangun di atas jaringan edge milik Cloudflare. Platform ini dirancang untuk memudahkan developer melakukan deployment aplikasi web secara cepat, otomatis, dan scalable tanpa perlu mengelola server secara manual.
 

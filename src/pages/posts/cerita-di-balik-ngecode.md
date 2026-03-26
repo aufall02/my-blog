@@ -3,6 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: "Kisah di Balik ngeCode.id: Mengubah Tesis Menjadi Alat Belajar Koding"
 date: "2026-02-28" 
 description: "Bagaimana sebuah ide bermula dan berkembang menjadi alat converter kode ke diagram yang digunakan secara praktis."
+keywords: ["ngecode", "code to diagram", "hyperexpress", "svelte 5", "inertia.js", "mermaid.js", "software engineering"]
 ---
 
 Halo semuanya, selamat datang di blog pribadi saya!

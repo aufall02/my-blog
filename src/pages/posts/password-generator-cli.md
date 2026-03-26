@@ -3,6 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: "PassGen – Bikin CLI Tool Generate Password Sendiri"
 date: "2026-03-06"
 description: "Bosan buka situs random password generator cuma buat buat password baru? Aku bikin PassGen, CLI tool ringan berbasis Node.js untuk generate password aman langsung dari terminal."
+keywords: ["password generator", "cli tool", "nodejs cli", "commander js", "open source project", "bikin cli nodejs"]
 ---
 Halo! Di post kali ini aku mau cerita tentang proyek kecil yang aku bikin namanya **PassGen** — sebuah CLI tool untuk generate password langsung dari terminal.
 
