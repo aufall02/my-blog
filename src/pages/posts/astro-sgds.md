@@ -5,9 +5,6 @@ date: "2026-03-30"
 description: "Hello word"
 keywords: ["hello world", "tes blog", "astro blog", "markdown"]
 ---
-
-Hallo dunia
-
 Perjalanan ini dimulai dari kebutuhan yang sangat praktis: membuat landing page layanan digital yang cepat, konsisten, dan mudah dirawat dalam jangka panjang. Di tahap awal, tantangan utamanya adalah menyatukan dua hal yang sering berjalan sendiri-sendiri, yaitu kecepatan pengembangan dan konsistensi desain antarmuka.
 
 Karena itu, dipilih kombinasi **Astro + SGDS**:
