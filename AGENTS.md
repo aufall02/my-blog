@@ -20,8 +20,8 @@
 - UI copy is mixed-language (English UI shell, many Indonesian articles); preserve existing voice per file when editing.
 
 ## SEO and external integrations
-- `astro.config.mjs` sets canonical site URL to `https://blog.ngecode.id` and enables `@astrojs/sitemap`.
-- `public/robots.txt` points crawlers to `https://blog.ngecode.id/sitemap-index.xml`.
+- `astro.config.mjs` sets canonical site URL to `https://ngecode.id` and enables `@astrojs/sitemap`.
+- `public/robots.txt` points crawlers to `https://ngecode.id/sitemap-index.xml`.
 - Layout auto-generates meta tags (`description`, `keywords`, Open Graph, Twitter) from frontmatter; `frontmatter.image` is optional and converted with `new URL(..., Astro.url)`.
 
 ## Developer workflow
@@ -35,5 +35,5 @@
 - Prefer minimal edits and keep layout responsibilities centralized in `src/layouts/MainLayout.astro`.
 - If changing post ordering/navigation logic, update both `src/pages/posts.astro` and `src/layouts/MainLayout.astro` consistently.
 - Do not introduce `src/content` collections unless explicitly requested; current project pattern is direct `Astro.glob` over `src/pages/posts/*.md`.
-- Keep generated URLs and metadata aligned with the configured production domain (`blog.ngecode.id`).
+- Keep generated URLs and metadata aligned with the configured production domain (`ngecode.id`).
 

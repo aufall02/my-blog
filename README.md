@@ -1,12 +1,12 @@
-# [blog.ngecode.id](https://blog.ngecode.id/)
+# [ngecode.id](https://ngecode.id/)
 
-Repositori ini berisi *source code* untuk [blog.ngecode.id](https://blog.ngecode.id/), website personal dan blog saya, dibangun menggunakan pendekatan minimalis dan performa tinggi (Zero-JS). Desainnya terinspirasi dari website [Felix Kling](https://felix-kling.de/).
+Repositori ini berisi *source code* untuk [ngecode.id](https://ngecode.id/), website personal dan blog saya, dibangun menggunakan pendekatan minimalis dan performa tinggi (Zero-JS). Desainnya terinspirasi dari website [Felix Kling](https://felix-kling.de/).
 
 Di website ini, saya membagikan hasil eksplorasi teknis, eksperimen pribadi, serta berbagai proyek dan temuan menarik yang saya kerjakan.
 
 ## 🚀 Fitur Utama
 
-- **Sangat Cepat & Ringan:** Dibuat dengan [Astro](https://astro.build/), menghasilkan HTML statis tanpa *client-side JavaScript* yang tidak perlu.
+- **Sangat Cepat & Ringan:** Dibuat dengan [Astro](https://astro.build/) dan dirender server-side di Netlify, tetap minim *client-side JavaScript*.
 - **Minimalis:** Menggunakan *System Fonts* agar *loading* instan dan tidak membebani kuota pengunjung.
 - **Berbasis Markdown:** Semua artikel dan halaman proyek ditulis murni menggunakan format Markdown (`.md`).
 
@@ -15,4 +15,4 @@ Di website ini, saya membagikan hasil eksplorasi teknis, eksperimen pribadi, ser
 - **Framework:** Astro
 - **Konten:** Markdown
 - **Styling:** Vanilla CSS (Global Layout)
-- **Deployment:** Vercel
+- **Deployment:** Netlify
