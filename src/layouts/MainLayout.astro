@@ -22,6 +22,64 @@ const prevPost =
         : null;
 
 const { frontmatter } = Astro.props;
+const defaultTitle = "Aufal Marom - Backend Engineer & System Integration Developer";
+const defaultDescription =
+    "Aufal Marom is an independent backend engineer and system integration developer from Indonesia. Explore practical articles, experiments, and technical write-ups.";
+const defaultKeywords =
+    "aufal marom, aufal marom backend engineer, aufal system integration, aufal developer, software engineer indonesia, backend developer, web development";
+
+const pageTitle = frontmatter?.title
+    ? `${frontmatter.title} | Aufal Marom`
+    : defaultTitle;
+const pageDescription = frontmatter?.description || defaultDescription;
+const pageKeywords = Array.isArray(frontmatter?.keywords)
+    ? frontmatter.keywords.join(", ")
+    : frontmatter?.keywords || defaultKeywords;
+const canonicalUrl = Astro.url.href;
+const ogImage = frontmatter?.image
+    ? new URL(frontmatter.image, Astro.url).href
+    : undefined;
+const ogType = frontmatter?.date ? "article" : "website";
+
+const websiteSchema = {
+    "@type": "WebSite",
+    "@id": "https://ngecode.id/#website",
+    url: "https://ngecode.id/",
+    name: "Aufal Marom",
+    inLanguage: "id-ID",
+};
+
+const personSchema = {
+    "@type": "Person",
+    "@id": "https://ngecode.id/#person",
+    name: "Aufal Marom",
+    url: "https://ngecode.id/",
+    jobTitle: "Backend Engineer and System Integration Developer",
+    sameAs: [
+        "https://github.com/aufall02",
+        "https://www.linkedin.com/in/aufall",
+        "https://www.facebook.com/aufall02/",
+    ],
+};
+
+const articleSchema = frontmatter?.date
+    ? {
+          "@type": "Article",
+          headline: frontmatter?.title || defaultTitle,
+          description: pageDescription,
+          datePublished: frontmatter.date,
+          dateModified: frontmatter.date,
+          author: { "@id": "https://ngecode.id/#person" },
+          mainEntityOfPage: canonicalUrl,
+          ...(ogImage ? { image: [ogImage] } : {}),
+      }
+    : null;
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [websiteSchema, personSchema, ...(articleSchema ? [articleSchema] : [])],
+};
+
 const normalizedPathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isHome = normalizedPathname === "/";
 const isBlogs = normalizedPathname === "/posts";
@@ -42,15 +100,14 @@ const formatDate = (dateString: string) => {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{frontmatter?.title || "Aufal Marom"}</title>
+        <title>{pageTitle}</title>
         <meta
             name="description"
-            content={frontmatter?.description ||
-                "Personal site of Aufal Marom — software engineer from Indonesia."}
+            content={pageDescription}
         />
 
         <!-- Canonical URL -->
-        <link rel="canonical" href={Astro.url.href} />
+        <link rel="canonical" href={canonicalUrl} />
 
         <!-- General SEO -->
         <meta name="author" content="Aufal Marom" />
@@ -58,31 +115,24 @@ const formatDate = (dateString: string) => {
         <meta name="theme-color" content="#ffffff" />
         <meta
             name="keywords"
-            content={frontmatter?.keywords || 
-                "artikel teknologi, berita teknologi terkini, tutorial pemrograman, belajar coding, software engineering Indonesia, web development, tips teknologi, perkembangan IT, dunia programmer, ulasan teknologi, kecerdasan buatan, machine learning, tekno update, developer web, panduan tech, coding pemula, technology blog, tech news, programming tutorials, software developer, frontend, backend, fullstack developer, framework, javascript, astro js, teknologi informasi, komputer, sains, inovasi digital, tren tech, code snippets"}
+            content={pageKeywords}
         />
 
         <!-- Open Graph / Facebook -->
-        <meta property="og:type" content={frontmatter?.date ? "article" : "website"} />
-        <meta property="og:url" content={Astro.url.href} />
-        <meta property="og:title" content={frontmatter?.title || "Aufal Marom"} />
-        <meta property="og:description" content={frontmatter?.description || "Personal site of Aufal Marom — software engineer from Indonesia."} />
-        {
-            frontmatter?.image && (
-                <meta property="og:image" content={new URL(frontmatter.image, Astro.url).href} />
-            )
-        }
+        <meta property="og:type" content={ogType} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        {ogImage && <meta property="og:image" content={ogImage} />}
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={Astro.url.href} />
-        <meta property="twitter:title" content={frontmatter?.title || "Aufal Marom"} />
-        <meta property="twitter:description" content={frontmatter?.description || "Personal site of Aufal Marom — software engineer from Indonesia."} />
-        {
-            frontmatter?.image && (
-                <meta property="twitter:image" content={new URL(frontmatter.image, Astro.url).href} />
-            )
-        }
+        <meta property="twitter:url" content={canonicalUrl} />
+        <meta property="twitter:title" content={pageTitle} />
+        <meta property="twitter:description" content={pageDescription} />
+        {ogImage && <meta property="twitter:image" content={ogImage} />}
+
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
         <style is:global>
             :root {
                 --system-fonts: system-ui, -apple-system, BlinkMacSystemFont,
@@ -266,6 +316,18 @@ const formatDate = (dateString: string) => {
                 color: #666;
                 margin-top: 8px;
                 font-style: italic;
+            }
+
+            .visually-hidden {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
             }
         </style>
     </head>

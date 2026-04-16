@@ -1,9 +1,9 @@
 ---
 layout: ../../layouts/MainLayout.astro
-title: "Hello Word"
+title: "Hello World"
 date: "2026-02-24" 
-description: "Hello word"
-keywords: ["hello world", "tes blog", "astro blog", "markdown"]
+description: "Catatan pembuka untuk format artikel blog Astro berbasis Markdown, termasuk contoh gambar lokal dan struktur frontmatter SEO dasar."
+keywords: ["hello world", "template artikel", "seo markdown", "astro blog", "catatan seo"]
 ---
 
 Hallo dunia
