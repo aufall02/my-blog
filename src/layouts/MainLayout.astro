@@ -201,6 +201,83 @@ const formatDate = (dateString: string) => {
                 border-radius: 8px;
             }
 
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1.5rem 0;
+                overflow-x: auto;
+                display: block;
+                min-width: 100%;
+            }
+
+            th,
+            td {
+                padding: 12px 14px;
+                border: 1px solid #e0e0e0;
+                text-align: left;
+                vertical-align: top;
+            }
+
+            thead th {
+                background: #f4f4f4;
+                font-weight: 600;
+            }
+
+            tbody tr:nth-child(odd) {
+                background: #fafafa;
+            }
+
+            .post-content {
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            .post-content table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed;
+                min-width: 100%;
+            }
+
+            .post-content table tr {
+                border-top: 1px solid #e9e9e9;
+            }
+
+            .post-content table td,
+            .post-content table th {
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            .post-content table th {
+                white-space: nowrap;
+            }
+
+            .post-content table th:first-child,
+            .post-content table td:first-child {
+                width: 16%;
+            }
+
+            .post-content table th:nth-child(2),
+            .post-content table td:nth-child(2) {
+                width: 14%;
+            }
+
+            .post-content table th:nth-child(3),
+            .post-content table td:nth-child(3) {
+                width: 18%;
+            }
+
+            .post-content table th:nth-child(4),
+            .post-content table td:nth-child(4) {
+                width: 28%;
+            }
+
+            .post-content table th:nth-child(5),
+            .post-content table td:nth-child(5) {
+                width: 24%;
+            }
+
             .header-content {
                 position: relative;
                 /*margin-top: 1rem;*/
@@ -353,7 +430,9 @@ const formatDate = (dateString: string) => {
         </header>
 
         <main>
-            <slot />
+            <div class="post-content">
+                <slot />
+            </div>
         </main>
 
         {
