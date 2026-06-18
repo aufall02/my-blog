@@ -3,7 +3,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
 const sortedPosts = allPosts.sort(
     (a, b) =>
         new Date(b.frontmatter.date).getTime() -
-        new Date(a.frontmatter.date).getTime()
+        new Date(a.frontmatter.date).getTime(),
 );
 
 const currentPath = Astro.url.pathname;
@@ -22,7 +22,8 @@ const prevPost =
         : null;
 
 const { frontmatter } = Astro.props;
-const defaultTitle = "Aufal Marom - Backend Engineer & System Integration Developer";
+const defaultTitle =
+    "Aufal Marom - Backend Engineer & System Integration Developer";
 const defaultDescription =
     "Aufal Marom is an independent backend engineer and system integration developer from Indonesia. Explore practical articles, experiments, and technical write-ups.";
 const defaultKeywords =
@@ -38,7 +39,7 @@ const pageKeywords = Array.isArray(frontmatter?.keywords)
 const canonicalUrl = Astro.url.href;
 const ogImage = frontmatter?.image
     ? new URL(frontmatter.image, Astro.url).href
-    : undefined;
+    : new URL("/og-image.jpg", Astro.url).href;
 const ogType = frontmatter?.date ? "article" : "website";
 
 const websiteSchema = {
@@ -77,7 +78,11 @@ const articleSchema = frontmatter?.date
 
 const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [websiteSchema, personSchema, ...(articleSchema ? [articleSchema] : [])],
+    "@graph": [
+        websiteSchema,
+        personSchema,
+        ...(articleSchema ? [articleSchema] : []),
+    ],
 };
 
 const normalizedPathname = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -95,16 +100,13 @@ const formatDate = (dateString: string) => {
 };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{pageTitle}</title>
-        <meta
-            name="description"
-            content={pageDescription}
-        />
+        <meta name="description" content={pageDescription} />
 
         <!-- Canonical URL -->
         <link rel="canonical" href={canonicalUrl} />
@@ -113,10 +115,7 @@ const formatDate = (dateString: string) => {
         <meta name="author" content="Aufal Marom" />
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#ffffff" />
-        <meta
-            name="keywords"
-            content={pageKeywords}
-        />
+        <meta name="keywords" content={pageKeywords} />
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content={ogType} />
@@ -132,14 +131,19 @@ const formatDate = (dateString: string) => {
         <meta property="twitter:description" content={pageDescription} />
         {ogImage && <meta property="twitter:image" content={ogImage} />}
 
-        <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(structuredData)}
+        />
         <style is:global>
             :root {
-                --system-fonts: system-ui, -apple-system, BlinkMacSystemFont,
-                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                --system-fonts:
+                    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
                     "Helvetica Neue", sans-serif;
-                --code-fonts: ui-monospace, SFMono-Regular, Menlo, Monaco,
-                    Consolas, monospace;
+                --code-fonts:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    monospace;
                 --text-color: #222;
                 --link-color: #0000ee;
                 --nav-link-color: #551a8b;
@@ -312,7 +316,7 @@ const formatDate = (dateString: string) => {
             }
 
             main {
-                margin-top: 2rem;
+                margin-top: 1rem;
             }
 
             .post-footer {
@@ -360,8 +364,41 @@ const formatDate = (dateString: string) => {
             /* --- Top Navigation Styles --- */
             .top-nav {
                 display: flex;
-                align-items: baseline; /* Biar teksnya sejajar di garis bawah yang sama */
-                gap: 1.5rem; /* Jarak antara nama dan menu */
+                align-items: center;
+                justify-content: space-between;
+                padding: 1.5rem 0 1rem 0;
+            }
+
+            .top-nav h2 {
+                margin: 0;
+            }
+
+            .nav-left {
+                display: flex;
+                align-items: baseline;
+                gap: 1.5rem;
+            }
+
+            .profile-logo {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.2s ease;
+                border-radius: 0;
+            }
+
+            .profile-logo:hover {
+                transform: scale(1.05);
+            }
+
+            .logo-link {
+                text-decoration: none;
+                display: block;
+            }
+
+            .logo-link:hover {
+                text-decoration: none;
             }
 
             .site-name {
@@ -411,11 +448,20 @@ const formatDate = (dateString: string) => {
     <body>
         <header class="post-header">
             <div class="top-nav">
-                <h2>Aufal marom</h2>
-                <nav class="main-menu">
-                    <a href="/">About</a>
-                    <a href="/posts">Blog</a>
-                </nav>
+                <div class="nav-left">
+                    <h2>Aufal marom</h2>
+                    <nav class="main-menu">
+                        <a href="/">About</a>
+                        <a href="/posts">Blog</a>
+                    </nav>
+                </div>
+                <a href="/" class="logo-link" aria-label="Home">
+                    <img
+                        src="/logo.jpg"
+                        alt="Aufal Marom"
+                        class="profile-logo"
+                    />
+                </a>
             </div>
             <div class="header-content">
                 {
