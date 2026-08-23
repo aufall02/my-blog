@@ -5,7 +5,7 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/docs/configuration
 export default defineConfig({
-  site: "https://ngecode.id",
+  site: "https://www.ngecode.id",
   output: "server",
   adapter: netlify(),
   integrations: [sitemap()],

@@ -4,6 +4,6 @@
 
 [[redirects]]
   from = "https://blog.ngecode.id/*"
-  to = "https://ngecode.id/:splat"
+  to = "https://www.ngecode.id/:splat"
   status = 301
   force = true

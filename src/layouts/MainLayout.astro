@@ -44,17 +44,17 @@ const ogType = frontmatter?.date ? "article" : "website";
 
 const websiteSchema = {
     "@type": "WebSite",
-    "@id": "https://ngecode.id/#website",
-    url: "https://ngecode.id/",
+    "@id": "https://www.ngecode.id/#website",
+    url: "https://www.ngecode.id/",
     name: "Aufal Marom",
     inLanguage: "id-ID",
 };
 
 const personSchema = {
     "@type": "Person",
-    "@id": "https://ngecode.id/#person",
+    "@id": "https://www.ngecode.id/#person",
     name: "Aufal Marom",
-    url: "https://ngecode.id/",
+    url: "https://www.ngecode.id/",
     jobTitle: "Backend Engineer and System Integration Developer",
     sameAs: [
         "https://github.com/aufall02",
@@ -70,7 +70,7 @@ const articleSchema = frontmatter?.date
           description: pageDescription,
           datePublished: frontmatter.date,
           dateModified: frontmatter.date,
-          author: { "@id": "https://ngecode.id/#person" },
+          author: { "@id": "https://www.ngecode.id/#person" },
           mainEntityOfPage: canonicalUrl,
           ...(ogImage ? { image: [ogImage] } : {}),
       }

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ngecode.id/sitemap-index.xml
+Sitemap: https://www.ngecode.id/sitemap-index.xml
